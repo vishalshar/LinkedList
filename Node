@@ -1,0 +1,70 @@
+package LinkedList;
+
+public class Node {
+
+    public int data;
+    public Node next;
+    
+    public Node()
+    {
+        data = 0;
+        next = null;
+    }
+
+    public Node(int x) {
+        data = x;
+        next = null;
+    }
+
+    public static void print(Node head) {
+        Node current = head;
+        while (current != null) {
+            System.out.println(current.data);
+            current = current.next;
+        }
+    }
+
+    public int length(Node head) {
+        int count = 0;
+        Node current = head;
+        while (current != null) {
+            count++;
+            current = current.next;
+        }
+        return count;
+    }
+    
+    public static Node createList1()
+    {
+         Node head = new Node(1);
+        Node temp = new Node(3);
+        head.next = temp;
+        Node temp2 = new Node(4);
+        temp.next = temp2;
+        Node temp3 = new Node(6);
+        temp2.next = temp3;
+        Node temp4 = new Node(1);
+        temp3.next = temp4;
+        Node temp5 = new Node(10);
+        temp4.next = temp5;
+        Node temp6 = new Node(4);
+        temp5.next = temp6;
+        return head;
+    }
+    
+     public static Node createList2()
+    {
+         Node head = new Node(0);
+        Node temp = new Node(2);
+        head.next = temp;
+        Node temp2 = new Node(5);
+        temp.next = temp2;
+        Node temp3 = new Node(7);
+        temp2.next = temp3;
+        Node temp4 = new Node(8);
+        temp3.next = temp4;
+        Node temp5 = new Node(11);
+        temp4.next = temp5;
+        return head;
+    }
+}

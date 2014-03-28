@@ -1,0 +1,60 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+
+package LinkedList;
+
+/**
+ *
+ * @author Vishal
+ */
+public class FrontBackSplit 
+{
+    public static void main(String args[])
+    {
+        Node head = Node.createList1();
+        int length = head.length(head);
+        
+        int splitL=0;
+        int splitR=0;
+        
+        if(length %2==0)
+        {
+            splitL= length/2;
+            splitR = length/2;
+        }
+        else
+        {
+            splitL=length/2+1;
+            splitR=length/2;
+        }
+        
+        Node left = new Node(0);
+        for(int i=0;i<splitL;i++)
+        {
+            addLast(left,head.data);
+            head = head.next;
+        }
+        Node right = new Node(0);
+        for(int i=0;i<splitR;i++)
+        {
+            addLast(right,head.data);
+            head = head.next;
+        }
+        Node.print(left.next);
+        System.out.println();
+        Node.print(right.next);
+    }
+    
+    public static void addLast(Node n,int x)
+    {
+        while(n.next!=null)
+        {
+            n = n.next;
+        }
+        Node temp = new Node(x);
+        n.next = temp;
+    }
+}

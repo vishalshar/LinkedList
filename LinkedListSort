@@ -1,0 +1,88 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package LinkedList;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+
+/**
+ *
+ * @author Vishal
+ */
+
+
+public class LinkedListSort {
+
+    public static void main(String args[]) throws IOException {
+        // LinkList initialization
+        Node head = new Node(6);
+        Node temp = new Node(5);
+        head.next = temp;
+        Node temp2 = new Node(8);
+        temp.next = temp2;
+        Node temp3 = new Node(3);
+        temp2.next = temp3;
+        Node temp4 = new Node(1);
+        temp3.next = temp4;
+        Node temp5 = new Node(0);
+        temp4.next = temp5;
+        Node temp6 = new Node(2);
+        temp5.next = temp6;
+
+        System.out.println("Length of linklist: " + head.length(head));
+//        head.print(head);
+        head = sortedList(head);
+
+        head.print(head);
+//        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+//        
+//        String input = br.readLine();
+//        int num = Integer.parseInt(input);
+    }
+
+    public static Node sortedInsert(Node current, int data) {
+        Node head = current;
+        Node previous = head;
+        if(data<=head.data)
+        {
+            Node temp = new Node(data);
+            temp.next = head;
+            head = temp;
+            return head;
+        }
+        head = head.next;
+        while (head.next != null) {
+            if (previous.data <= data && data <= head.data) {
+                Node temp = new Node(data);
+                previous.next = temp;
+                temp.next = head;
+                break;
+            }
+            previous = head;
+            head = head.next;
+        }
+        if(head.data<=data)
+        {
+            Node temp = new Node(data);
+            head.next = temp;
+            return head;
+        }
+        return current;
+    }
+
+    public static Node sortedList(Node head) {
+        Node sorted = new Node(head.data);
+        head = head.next;
+
+        while (head != null) {
+
+            sorted = sortedInsert(sorted, head.data);
+            head = head.next;
+        }
+        return sorted;
+    }
+}

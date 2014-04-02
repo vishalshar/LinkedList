@@ -1,0 +1,57 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package LinkedList;
+
+/**
+ *
+ * @author Vishal
+ */
+public class RemoveDuplicate {
+
+    public static void main(String args[]) {
+        Node dup = Node.createList1();
+        Node.print(dup);
+        removeDuplicate(dup);
+    }
+
+    public static void removeDuplicate(Node x) {
+        Node dup = x;
+
+        if (dup == null || dup.next == null) {
+            return;
+        }
+
+        Node temp = dup;
+        Node pre = new Node();
+        Node cur = dup;
+        Node next = dup.next;
+
+        while (dup.next != null) {
+            temp = dup.next;
+
+            pre = dup;
+            cur = temp;
+
+            while (temp != null) {
+
+                if (dup.data == temp.data) {
+                    
+                    if (cur.next == null) {
+                        pre.next = null;
+                    } else {
+                        pre.next = cur.next;
+                    }
+                }
+
+                pre = temp;
+                cur = temp.next;
+                temp = temp.next;
+            }
+            dup = dup.next;
+        }
+        Node.print(x);
+    }
+}

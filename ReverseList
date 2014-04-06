@@ -1,0 +1,52 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package LinkedList;
+
+/**
+ *
+ * @author Vishal
+ */
+public class ReverseList {
+
+    public static void main(String args[]) {
+        Node dup = Node.createList1();
+//        Node.print(dup);
+        Node.print(reverseRecursion(dup));
+    }
+
+    public static void reverseIteration(Node dup) {
+        Node temp = dup;
+        Node pre = null;
+        Node cur = temp;
+
+        while (cur != null) {
+            Node x = cur.next;
+            cur.next = pre;
+
+            pre = cur;
+            cur = x;
+        }
+        Node.print(pre);
+    }
+
+    public static Node reverseRecursion(Node dup) {
+
+        if(dup == null)
+            return null;
+        
+        if(dup.next == null)
+            return dup;
+
+        Node second = dup.next;
+        dup.next = null;
+        
+        Node reverse = reverseRecursion(second);
+        
+        second.next = dup;
+        return reverse;
+        
+    }
+}

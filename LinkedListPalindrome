@@ -1,0 +1,140 @@
+
+/**
+ *
+ * @author Vishal
+ */
+class Node {
+
+    int data;
+    public Node next;
+
+    Node() {
+        data = 0;
+        next = null;
+    }
+
+    Node(int x) {
+        data = x;
+        next = null;
+    }
+
+    public void setNext(Node next) {
+        this.next = next;
+    }
+}
+
+public class LinkedListPalindrome {
+
+    public static void main(String args[]) {
+        Node head = new Node(5);
+        Node temp = new Node(10);
+        head.next = temp;
+        Node temp2 = new Node(15);
+        temp.next = temp2;
+        Node temp3 = new Node(20);
+        temp2.next = temp3;
+        Node temp4 = new Node(15);
+        temp3.next = temp4;
+        Node temp5 = new Node(10);
+        temp4.next = temp5;
+        Node temp6 = new Node(5);
+        temp5.next = temp6;
+
+        System.out.println("Given LinkedList");
+        printList(head);
+
+        Node center = centerNode(head);
+        System.out.println("");
+        System.out.println("Center " + center.data);
+
+        Node head2 = reverseLinedList(center.next);
+        System.out.println("");
+        System.out.println("Reversed second half ");
+        printList(head2);
+
+        System.out.println("");
+        System.out.println("Answer " + checkPalindrom(head, head2));
+        
+        zipList(head, head2);
+
+    }
+
+    public static Node reverseLinedList(Node head) {
+        if (head.next == null) {
+            return head;
+        }
+
+        Node second = head.next;
+        head.next = null;
+
+        Node reverse = reverseLinedList(second);
+        second.next = head;
+
+        return reverse;
+    }
+
+    public static Node centerNode(Node head) {
+        if (head == null) {
+            return head;
+        }
+
+        Node slow = head;
+        Node fast = head.next;
+
+        while (!(fast == null || slow == null || fast.next == null)) {
+            slow = slow.next;
+            fast = fast.next.next;
+        }
+
+        return slow;
+    }
+
+    public static void printList(Node head) {
+        if (head == null) {
+            return;
+        }
+        while (head != null) {
+            System.out.println(head.data + " ");
+            head = head.next;
+        }
+    }
+
+    private static boolean checkPalindrom(Node head, Node head2) {
+
+        while (!(head == null || head2 == null)) {
+            if (head.data != head2.data) {
+                return false;
+            }
+            
+            head = head.next;
+            head2 = head2.next;
+        }
+        
+        return true;
+    }
+
+    private static void zipList(Node head1, Node head2) {
+
+        Node result = new Node();
+        Node temp = result;
+        System.out.println("");
+        System.out.println("Zip List");
+        
+        while (!(head1 == null || head2 == null)) {
+            
+            Node temp1 = new Node(head1.data);
+            Node temp2 = new Node(head2.data);
+            result.next = temp1;
+            temp1.next = temp2;
+            result = temp2;
+            
+            head1 = head1.next;
+            head2 = head2.next;
+        }
+        
+        if(head1.next !=null)
+            result.next = new Node(head1.data);
+        
+        printList(temp.next);
+    }
+}

@@ -1,6 +1,7 @@
-
 /**
  *
+ check if the given list is palindrome and also print a zip list of the given LinkedList.
+ 
  * @author Vishal
  */
 class Node {

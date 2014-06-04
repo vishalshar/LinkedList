@@ -10,7 +10,7 @@ public class AlternatingSplit
         Node current = Node.createList1();
         
         Node head = current;
-//        Node alt = new Node(0);
+
         // alternate split
         //for length less than 3
         if(head.length(head) == 1)
